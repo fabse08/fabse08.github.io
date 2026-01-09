@@ -1,251 +1,518 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fabian</title>
-  <style>
-    :root{--bg:#0f1722;--card:#0b1220;--accent:#e11d48}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui}
-    body{background:linear-gradient(180deg,var(--bg),#071024);color:#ffffff;min-height:100vh}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fabian</title>
 
-    /* Navbar */
-    .navbar{
-      position:fixed;top:0;left:0;width:100%;height:64px;
-      background:rgba(4,6,12,0.55);backdrop-filter:blur(6px);
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 28px;box-sizing:border-box;z-index:50;
-      box-shadow:0 6px 24px rgba(2,6,23,0.6);
-    }
-    .nav-title{font-size:20px;font-weight:700}
-    .nav-links{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-    .nav-links a{text-decoration:none;color:#d1d5db;font-size:15px;padding:6px 8px;border-radius:6px;transition:0.18s}
-    .nav-links a:hover{color:white;background:rgba(255,255,255,0.03)}
+<style>
+:root{
+  --bg:#0f1722;
+  --card:#0b1220;
+  --accent:#e11d48;
+}
 
-    .search-box input{
-      padding:8px 12px;border-radius:10px;border:none;outline:none;
-      background:#0b1220;color:white;font-size:14px;min-width:180px;
-      box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
-    }
+html,body{
+  margin:0;
+  font-family:system-ui;
+  color:#fff;
+  background:linear-gradient(180deg,var(--bg),#071024);
+  min-height:100vh;
+}
 
-    /* Main */
-    main.container{
-      margin-top:120px;
-      display:flex;flex-direction:column;align-items:center;
-      text-align:center;
-    }
-    h1{margin:0;font-size:48px}
+/* ================= NAVBAR ================= */
+.navbar{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:64px;
+  background:rgba(4,6,12,.55);
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  box-sizing:border-box;
+  z-index:50;
+}
 
-    .circle{
-      margin-top:40px;width:340px;height:340px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      background:radial-gradient(circle at 40% 30%, rgba(255,255,255,0.04), transparent 30%),
-                  linear-gradient(135deg,#0b1220,#0f2135);
-      box-shadow:0 18px 40px rgba(2,6,23,0.6), inset 0 -6px 30px rgba(0,0,0,0.6);
-    }
-    .middle{font-size:160px;animation:spin 3.5s linear infinite}
-    @keyframes spin{from{transform:rotate(0)} to{transform:rotate(360deg)}}
+.nav-title{
+  font-size:20px;
+  font-weight:700;
+}
 
-    /* TicTacToe */
-    #tictactoe{display:none;margin-top:40px}
-    .board{
-      display:grid;
-      grid-template-columns:repeat(3,100px);
-      grid-gap:6px;
-    }
-    .cell{
-      width:100px;height:100px;
-      background:#0b1220;display:flex;
-      align-items:center;justify-content:center;
-      font-size:48px;cursor:pointer;border-radius:10px;
-      transition:0.2s;
-      border:2px solid #ffffff40; /* Umrandung */
-    }
-    .cell:hover{background:#142033}
-    .resultEmoji{
-      font-size:140px;margin-top:25px;
-    }
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:18px;
+  margin:0;
+  padding:0;
+  justify-content:center;
+  flex:1;
+}
 
-    /* Kontaktformular */
-    #contactForm{display:none;margin-top:40px;width:320px;text-align:left;}
-    #contactForm label{display:block;margin-top:12px;font-size:14px;}
-    #contactForm input, #contactForm textarea{
-      width:100%;padding:8px;border-radius:6px;border:none;margin-top:4px;
-      background:#0b1220;color:white;font-size:14px;box-sizing:border-box;
-    }
-    #contactForm button{
-      margin-top:12px;padding:10px 16px;border:none;border-radius:6px;
-      background:var(--accent);color:white;font-size:16px;cursor:pointer;
-      transition:0.2s;
-    }
-    #contactForm button:hover{background:#c81e43}
-    #contactInfo{margin-top:20px; font-size:14px; color:#cbd5e1;}
-  </style>
+.nav-links a{
+  color:#d1d5db;
+  text-decoration:none;
+  padding:6px 8px;
+  border-radius:6px;
+  transition:.2s;
+}
+
+.nav-links a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.05);
+}
+
+.search-box{
+  margin-left:auto;
+}
+
+.search-box input{
+  padding:8px 12px;
+  border-radius:10px;
+  border:none;
+  background:#0b1220;
+  color:#fff;
+  outline:none;
+}
+
+/* ================= MAIN ================= */
+main{
+  margin-top:120px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+section{
+  display:none;
+}
+
+/* ================= HOME ================= */
+#home{
+  display:block;
+}
+
+.circle{
+  margin:40px auto;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#0b1220,#0f2135);
+  box-shadow:0 18px 40px rgba(2,6,23,.6);
+}
+
+.middle{
+  font-size:160px;
+  animation:spin 3.5s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ================= GAME ================= */
+#game{
+  margin-top:20px;
+}
+
+#difficulty{
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:8px;
+  background:#0b1220;
+  color:#fff;
+  border:none;
+}
+
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,100px);
+  gap:6px;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.cell{
+  width:100px;
+  height:100px;
+  background:#0b1220;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  cursor:pointer;
+  border:2px solid #ffffff40;
+}
+
+.result{
+  font-size:100px;
+  margin-top:20px;
+}
+
+button{
+  margin-top:10px;
+  padding:8px 14px;
+  background:var(--accent);
+  border:none;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* ================= CONTACT ================= */
+#contactForm{
+  display:none;
+  width:320px;
+  margin:40px auto;
+  text-align:left;
+}
+
+#contactForm h1{
+  text-align:center;
+}
+
+#contactForm input,
+#contactForm textarea{
+  width:100%;
+  padding:8px;
+  margin-top:4px;
+  background:#0b1220;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  box-sizing:border-box;
+}
+
+#contactForm button{
+  margin-top:10px;
+  padding:8px 14px;
+  background:var(--accent);
+  border:none;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+#contactInfo{
+  margin-top:20px;
+  font-size:14px;
+  color:#cbd5e1;
+}
+
+/* ================= FABSE ================= */
+.fabse-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+  margin-top:40px;
+}
+
+.fabse-emoji{
+  font-size:120px;
+  animation:wave 1.5s infinite;
+}
+
+.speech{
+  background:#0b1220;
+  padding:16px 20px;
+  border-radius:14px;
+  text-align:center;
+}
+
+@keyframes wave{
+  0%{transform:rotate(0)}
+  25%{transform:rotate(14deg)}
+  50%{transform:rotate(-10deg)}
+  75%{transform:rotate(14deg)}
+  100%{transform:rotate(0)}
+}
+
+/* ================= TEST ================= */
+#test img{
+  max-width:100%;
+  border-radius:12px;
+  margin-top:20px;
+}
+
+/* ================= WORTSPIEL ================= */
+#wortspiel input{
+  padding:8px 12px;
+  border-radius:6px;
+  border:none;
+  background:#0b1220;
+  color:#fff;
+  outline:none;
+}
+
+#wortspiel button{
+  padding:8px 14px;
+  background:var(--accent);
+  border:none;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+#wortspiel #reimErgebnis{
+  margin-top:20px;
+  font-size:20px;
+}
+</style>
 </head>
+
 <body>
 
-  <nav class="navbar">
-    <div class="nav-title">Fabian</div>
+<nav class="navbar">
+  <div class="nav-title">Fabian</div>
 
-    <ul class="nav-links">
-      <li><a href="#" onclick="showHome()">Home</a></li>
-      <li><a href="#" onclick="showAbout()">About</a></li>
-      <li><a href="#" onclick="showContact()">Contact</a></li>
-    </ul>
+  <ul class="nav-links">
+    <li><a href="#" onclick="show('home')">Home</a></li>
+    <li><a href="#" onclick="show('game')">Spiel</a></li>
+    <li><a href="#" onclick="show('fabse')">Fabse</a></li>
+    <li><a href="#" onclick="show('Mitarbeiter')">Mitarbeiter</a></li>
+    <li><a href="#" onclick="show('wortspiel')">Wortspiel</a></li>
+    <li><a href="#" onclick="show('contactForm')">Contact</a></li>
+  </ul>
 
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Seite durchsuchen..." />
-    </div>
-  </nav>
+  <div class="search-box">
+    <input id="search" placeholder="Seite durchsuchen…" oninput="searchPage()">
+  </div>
+</nav>
 
-  <main id="mainContent" class="container">
+<main>
 
-    <!-- HOME -->
-    <div id="homeSection">
-      <h1>Fabian</h1>
-      <div class="circle" id="homeCircle">
-        <div class="middle" id="homeEmoji">🖕</div>
-      </div>
-    </div>
+<!-- HOME -->
+<section id="home">
+  <h1>Fabian</h1>
+  <div class="circle">
+    <div class="middle">🖕</div>
+  </div>
+</section>
 
-    <!-- ABOUT / TICTACTOE -->
-    <div id="tictactoe">
-      <h1>Tic Tac Toe</h1>
+<!-- TIC TAC TOE -->
+<section id="game">
+  <h1>Tic Tac Toe</h1>
 
-      <div class="board" id="board">
-        <div class="cell" onclick="playerMove(0)"></div>
-        <div class="cell" onclick="playerMove(1)"></div>
-        <div class="cell" onclick="playerMove(2)"></div>
-        <div class="cell" onclick="playerMove(3)"></div>
-        <div class="cell" onclick="playerMove(4)"></div>
-        <div class="cell" onclick="playerMove(5)"></div>
-        <div class="cell" onclick="playerMove(6)"></div>
-        <div class="cell" onclick="playerMove(7)"></div>
-        <div class="cell" onclick="playerMove(8)"></div>
-      </div>
+  <select id="difficulty">
+    <option value="easy">Leicht</option>
+    <option value="medium">Mittel</option>
+    <option value="hard">Schwer</option>
+  </select>
 
-      <div id="result" class="resultEmoji"></div>
-    </div>
+  <div class="board">
+    <div class="cell" onclick="move(0)"></div>
+    <div class="cell" onclick="move(1)"></div>
+    <div class="cell" onclick="move(2)"></div>
+    <div class="cell" onclick="move(3)"></div>
+    <div class="cell" onclick="move(4)"></div>
+    <div class="cell" onclick="move(5)"></div>
+    <div class="cell" onclick="move(6)"></div>
+    <div class="cell" onclick="move(7)"></div>
+    <div class="cell" onclick="move(8)"></div>
+  </div>
 
-    <!-- CONTACT FORM -->
-    <div id="contactForm">
-      <h1>Kontakt</h1>
-      <form onsubmit="sendMail(event)">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-        <label for="email">E-Mail:</label>
-        <input type="email" id="email" required>
-        <label for="message">Nachricht:</label>
-        <textarea id="message" rows="5" required></textarea>
-        <button type="submit">Senden</button>
-      </form>
+  <div class="result" id="result"></div>
+  <div>
+    👍 <span id="wins">0</span> |
+    🖕 <span id="losses">0</span> |
+    😐 <span id="draws">0</span>
+  </div>
+  <button onclick="resetGame()">Neues Spiel</button>
+</section>
 
-      <!-- Feste Kontaktdaten -->
-      <div id="contactInfo">
-        <strong>Kontakt Daten:</strong><br>
-        Name: Fabian<br>
-        Nachname: Geile Sau<br>
-        E-Mail: fabian@geile-sau.de<br>
-        Ort: Geilenkirchen
-      </div>
-    </div>
+<!-- FABSE -->
+<section id="fabse">
+  <div class="fabse-container">
+    <div class="fabse-emoji">👋🙂</div>
+    <div class="speech">Hallo ich bin Fabse</div>
+  </div>
+</section>
 
-  </main>
+<!-- MITARBEITER -->
+<section id="Mitarbeiter">
+  <h1>Fabse Rapsöl</h1>
+  <div>
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzBnY3JhNGVkbG5vOTRiaGpyMWtxdmlqMWtsbGswMHJ5MGU5Y2JyNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif" 
+         alt="Test GIF"/>
+  </div>
+</section>
+
+<!-- WORTSPIEL -->
+<section id="wortspiel">
+  <h1>Wortspiel</h1>
+  <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
+    <input type="text" id="wortInput" value="Fabian ...">
+    <button onclick="reimName()">Namen reimen</button>
+  </div>
+  <div id="reimErgebnis"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contactForm">
+  <h1>Kontakt</h1>
+  <form onsubmit="sendMail(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <label for="email">E-Mail:</label>
+    <input type="email" id="email" required>
+    <label for="message">Nachricht:</label>
+    <textarea id="message" rows="5" required></textarea>
+    <button type="submit">Senden</button>
+  </form>
+
+  <div id="contactInfo">
+    <strong>Kontakt Daten:</strong><br>
+    Name: Fabian<br>
+    Nachname: Strickmann<br>
+    E-Mail: fabian@joy-ist-geil.de<br>
+    Ort: Bett von Joy
+  </div>
+</section>
+
+</main>
 
 <script>
-let board = ["","","","","","","","",""];
-let gameOver = false;
+let board=["","","","","","","","",""];
+let over=false;
+let wins=0, losses=0, draws=0;
 
-function showHome(){
-  document.getElementById("tictactoe").style.display = "none";
-  document.getElementById("contactForm").style.display = "none";
-  document.getElementById("homeSection").style.display = "block";
-  resetGame();
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.style.display="none");
+  document.getElementById(id).style.display="block";
 }
 
-function showAbout(){
-  document.getElementById("homeSection").style.display = "none";
-  document.getElementById("contactForm").style.display = "none";
-  document.getElementById("tictactoe").style.display = "block";
-  resetGame();
+function searchPage(){
+  let q=document.getElementById("search").value.toLowerCase();
+  if(q.includes("spiel")) show('game');
+  else if(q.includes("fabse")) show('fabse');
+  else if(q.includes("mitarbeiter")) show('Mitarbeiter');
+  else if(q.includes("kontakt")) show('contactForm');
+  else if(q.includes("wort")) show('wortspiel');
+  else show('home');
 }
 
-function showContact(){
-  document.getElementById("homeSection").style.display = "none";
-  document.getElementById("tictactoe").style.display = "none";
-  document.getElementById("contactForm").style.display = "block";
+// ===== Tic Tac Toe =====
+function move(i){
+  if(board[i]||over) return;
+  board[i]="X";
+  cells()[i].textContent="X";
+  if(win("X")) return end("👍");
+  if(full()) return end("😐");
+  setTimeout(cpu,300);
+}
+
+function cpu(){
+  let d=document.getElementById("difficulty").value;
+  let m;
+  if(d==="easy") m=random();
+  if(d==="medium") m=medium();
+  if(d==="hard") m=minimax();
+  board[m]="O";
+  cells()[m].textContent="O";
+  if(win("O")) end("🖕");
+  else if(full()) end("😐");
+}
+
+function end(e){
+  over=true;
+  document.getElementById("result").textContent=e;
+  if(e==="👍") wins++;
+  if(e==="🖕") losses++;
+  if(e==="😐") draws++;
+  document.getElementById("wins").textContent=wins;
+  document.getElementById("losses").textContent=losses;
+  document.getElementById("draws").textContent=draws;
 }
 
 function resetGame(){
-  board = ["","","","","","","","",""];
-  gameOver = false;
-  document.querySelectorAll(".cell").forEach(c => c.innerHTML = "");
-  document.getElementById("result").innerHTML = "";
+  board=["","","","","","","","",""];
+  over=false;
+  cells().forEach(c=>c.textContent="");
+  document.getElementById("result").textContent="";
 }
 
-function playerMove(i){
-  if(board[i] !== "" || gameOver) return;
-  board[i] = "X";
-  document.querySelectorAll(".cell")[i].innerHTML = "X";
+// KI-Funktionen
+function random(){
+  let e=board.map((v,i)=>v?null:i).filter(v=>v!=null);
+  return e[Math.floor(Math.random()*e.length)];
+}
 
-  if(checkWin("X")){
-    endGame("win");
-    return;
+function medium(){
+  for(let i=0;i<9;i++){
+    if(!board[i]){
+      board[i]="O"; if(win("O")){board[i]=""; return i;} board[i]="";
+    }
   }
-  if(board.every(c => c !== "")){
-    endGame("draw");
-    return;
+  for(let i=0;i<9;i++){
+    if(!board[i]){
+      board[i]="X"; if(win("X")){board[i]=""; return i;} board[i]="";
+    }
   }
-
-  setTimeout(computerMove, 1000);
+  return random();
 }
 
-function computerMove(){
-  if(gameOver) return;
-
-  let empty = board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
-  if(empty.length===0) return;
-
-  let choice = empty[Math.floor(Math.random()*empty.length)];
-  board[choice] = "O";
-  document.querySelectorAll(".cell")[choice].innerHTML = "O";
-
-  if(checkWin("O")){
-    endGame("lose");
-  } else if(board.every(c=>c!=="")){
-    endGame("draw");
+function minimax(){
+  let best=-1e9,m;
+  for(let i=0;i<9;i++){
+    if(!board[i]){
+      board[i]="O";
+      let s=mm(false);
+      board[i]="";
+      if(s>best){best=s; m=i;}
+    }
   }
+  return m;
 }
 
-function checkWin(p){
-  let wins = [
-    [0,1,2],[3,4,5],[6,7,8],
-    [0,3,6],[1,4,7],[2,5,8],
-    [0,4,8],[2,4,6]
-  ];
-  return wins.some(w => w.every(i => board[i] === p));
-}
-
-function endGame(type){
-  gameOver = true;
-  if(type === "win"){
-    document.getElementById("result").innerHTML = "👍";
-  } else if(type === "lose"){
-    document.getElementById("result").innerHTML = "🖕";
-  } else {
-    document.getElementById("result").innerHTML = "😐";
+function mm(max){
+  if(win("O")) return 1;
+  if(win("X")) return -1;
+  if(full()) return 0;
+  let best=max?-1e9:1e9;
+  for(let i=0;i<9;i++){
+    if(!board[i]){
+      board[i]=max?"O":"X";
+      best=max?Math.max(best,mm(!max)):Math.min(best,mm(!max));
+      board[i]="";
+    }
   }
+  return best;
 }
 
-// Funktion für Kontaktformular-Mail
+function win(p){
+  return [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]].some(w=>w.every(i=>board[i]===p));
+}
+
+function full(){return board.every(c=>c!=="");}
+
+function cells(){return document.querySelectorAll(".cell");}
+
+// ===== Contact Mail =====
 function sendMail(e){
   e.preventDefault();
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let message = document.getElementById("message").value;
+  let name=document.getElementById("name").value;
+  let email=document.getElementById("email").value;
+  let message=document.getElementById("message").value;
+  let mailtoLink=`mailto:fabian@matos.de?subject=Kontakt%20von%20${encodeURIComponent(name)}&body=${encodeURIComponent("Name: "+name+"\nE-Mail: "+email+"\n\nNachricht:\n"+message)}`;
+  window.location.href=mailtoLink;
+}
 
-  let mailtoLink = `mailto:fabian@matos.de?subject=Kontakt%20von%20${encodeURIComponent(name)}&body=${encodeURIComponent("Name: "+name+"\nE-Mail: "+email+"\n\nNachricht:\n"+message)}`;
-  window.location.href = mailtoLink;
+// ===== WORTSPIEL =====
+function reimName(){
+  const reime = [
+    "Sabian", "Ramian", "Nabian", "Lamian",
+    "Fabse Mitasch", "Fabian mit Plan", "Fabian total dran", "Fabian der Mann"
+  ];
+  const zufall = reime[Math.floor(Math.random() * reime.length)];
+  document.getElementById("reimErgebnis").textContent = "Fabian = " + zufall;
 }
 </script>
 
