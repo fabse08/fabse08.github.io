@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabians AP1 Abenteuer</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+        background-size: 600% 600%;
+        animation: gradientMove 12s ease infinite;
+        color: white;
+        overflow-x: hidden;
+    }
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        animation: fadeIn 2s ease;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 25px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        animation: slideUp 1.5s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(60px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .status {
+        font-size: 1.3em;
+        margin-top: 15px;
+    }
+
+    .panic {
+        font-size: 2em;
+        text-align: center;
+        margin-top: 30px;
+        animation: shake 0.5s infinite alternate;
+        color: #ff6b6b;
+    }
+
+    @keyframes shake {
+        from { transform: translateX(-5px); }
+        to { transform: translateX(5px); }
+    }
+
+    button {
+        display: block;
+        margin: 30px auto;
+        padding: 15px 25px;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 10px;
+        background: #00c6ff;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0072ff;
+        transform: scale(1.1);
+    }
+
+    .result {
+        text-align: center;
+        font-size: 1.8em;
+        margin-top: 20px;
+        min-height: 40px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 60px;
+        opacity: 0.7;
+    }
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💻 Fabians AP1 Abenteuer</h1>
+    <p>Fachinformatiker Systemintegration – Abschlussprüfung Teil 1</p>
+</header>
+
+<div class="card">
+    <h2>📍 Prüfungssituation</h2>
+    <p><strong>Name:</strong> Fabian</p>
+    <p><strong>Datum:</strong> 25.02.2025</p>
+    <p><strong>Ort:</strong> HBBK Hans-Böckler Berufskolleg, Münster</p>
+    <p><strong>Mission:</strong> AP1 bestehen...</p>
+
+    <div class="status">
+        ⏱️ 20 Minuten später...<br>
+        📄 Aufgaben gesehen...<br>
+        🧠 Gehirn: <em>Buffer Overflow</em>
+    </div>
+
+    <div class="panic">
+        🚨 Fabian muss aufs Klo! Am Schwitzen! Krämpfe! 🚨
+    </div>
+</div>
+
+<div class="card">
+    <h2>📊 Erwartetes Ergebnis</h2>
+    <p>Fabians Gefühl nach der Prüfung:</p>
+
+    <button onclick="showResult()">Ergebnis berechnen (Gefühl)</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<footer>
+    <p>AP1 © 2026 – Fabian Kacki aktiviert 💩😄</p>
+</footer>
+
+<script>
+function showResult() {
+    const results = [
+        "Note: 4 😬",
+        "Note: 4- 😐",
+        "Note: 5 💀",
+        "Vielleicht doch bestanden...? 🤞",
+        "IHK sagt: Wir schauen mal 👀"
+    ];
+
+    const random = results[Math.floor(Math.random() * results.length)];
+    document.getElementById("result").innerText = random;
+}
+</script>
+
+</body>
+</html>
